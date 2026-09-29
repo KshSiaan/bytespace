@@ -21,6 +21,9 @@ export default function Story() {
         <div className="pointer-events-none absolute inset-0 -z-10">
           <div className="absolute left-1/4 -top-1/2 -translate-x-1/2 h-[150%] w-[150dvw] bg-radial from-[#CBFC0160] via-transparent to-transparent" />
         </div>
+        <div className="pointer-events-none absolute left-0 inset-0 -z-10">
+          <div className="absolute right-[-80dvw] top-[-40dvh] h-[150%] w-[150dvw] bg-radial from-[#003BE230] via-transparent to-transparent" />
+        </div>
 
         <div className="relative h-full flex flex-col justify-center items-center">
           <div className="w-2/3 space-y-4">
@@ -93,8 +96,11 @@ export default function Story() {
 
       <section className="relative h-[80dvh] border-b grid grid-cols-2 gap-4 overflow-visible">
         {/* Full-section gradient */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute left-1/4 -top-1/2 -translate-x-1/2 h-[150%] w-[150dvw] bg-radial from-[#CBFC0160] via-transparent to-transparent" />
+        <div className="pointer-events-none absolute left-0 inset-0 -z-10">
+          <div className="absolute left-[-80dvw] bottom-[-40dvh] h-[150%] w-[150dvw] bg-radial from-[#CBFC0160] via-transparent to-transparent" />
+        </div>
+        <div className="pointer-events-none absolute left-0 inset-0 -z-10">
+          <div className="absolute right-[-80dvw] bottom-[-40dvh] h-[150%] w-[150dvw] bg-radial from-[#003BE250] via-transparent to-transparent" />
         </div>
 
         <div className="relative flex flex-col justify-end items-center">
