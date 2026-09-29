@@ -13,6 +13,9 @@ import PersonAnchor from "./_home/person-anchor";
 import ExternalElements from "./_home/extenral-elements";
 import Image from "next/image";
 import Discover from "./_home/sections/discover";
+import { logoCloud } from "@/lib/data/data";
+import DiscoverMore from "./_home/sections/discover-more";
+import Story from "./_home/sections/story";
 export default function Page() {
   return (
     <>
@@ -53,13 +56,7 @@ export default function Page() {
         </div>
       </header>
       <section className="py-18 bg-muted grid grid-cols-5 gap-[8%] px-[7dvw]">
-        {[
-          "/logo/Frame.svg",
-          "/logo/Frame-1.svg",
-          "/logo/Frame-2.svg",
-          "/logo/Frame-3.svg",
-          "/logo/Frame-4.svg",
-        ].map((src) => (
+        {logoCloud.map((src) => (
           <Image
             key={src}
             src={src}
@@ -74,6 +71,8 @@ export default function Page() {
         <Suspense fallback={<div className="h-[50dvh] w-full bg-muted" />}>
           <Discover />
         </Suspense>
+        <DiscoverMore />
+        <Story />
       </main>
     </>
   );

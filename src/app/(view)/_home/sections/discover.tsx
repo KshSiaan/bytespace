@@ -1,10 +1,23 @@
 "use client";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarGroupCount,
+  AvatarImage,
+} from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { categories, dataset } from "@/lib/data/data";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { avatars, categories, dataset } from "@/lib/data/data";
 import { cn } from "cn";
-import { PlusIcon } from "lucide-react";
-import React, { useId } from "react";
+import {
+  ChartNoAxesColumnIncreasingIcon,
+  PlusIcon,
+  StarIcon,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 export default function Discover() {
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
@@ -44,15 +57,15 @@ export default function Discover() {
         </Button>
         {categories.map((category) => (
           <Button
-            key={category}
-            variant={selectedCategory === category ? "default" : "outline"}
+            key={category?.name}
+            variant={selectedCategory === category.name ? "default" : "outline"}
             className={cn(
               "rounded-full",
-              selectedCategory !== category && "bg-muted border-0",
+              selectedCategory !== category.name && "bg-muted border-0",
             )}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => setSelectedCategory(category.name)}
           >
-            {category}
+            {category.name}
           </Button>
         ))}
         <Button
@@ -73,13 +86,59 @@ export default function Discover() {
   );
 }
 
-function CourseCard({ item }: { item: (typeof dataset)[number] }) {
-  const id = useId();
+export function CourseCard({ item }: { item: (typeof dataset)[number] }) {
   return (
-    <Card id={id}>
-      <pre>
-        <code>{JSON.stringify(item, null, 2)}</code>
-      </pre>
+    <Card className="py-4!">
+      <CardHeader className="px-4!">
+        <Image
+          src={item.image}
+          alt={item.title.toLocaleLowerCase()}
+          width={400}
+          height={225}
+          className="w-full object-cover aspect-video rounded-lg"
+        />
+        <div className="flex justify-between items-center gap-2 mt-2">
+          <CardTitle className="text-xl font-bold line-clamp-1">
+            {item.title}
+          </CardTitle>
+          <div className="flex items-center gap-1 font-semibold text-foreground/50">
+            {item.rating}{" "}
+            <StarIcon fill="currentColor" className="size-4 text-gray-300" />
+          </div>
+        </div>
+        <p>
+          by{" "}
+          <Link
+            className="text-secondary hover:underline"
+            href={`/creators/${item.creator}`}
+          >
+            {item.creator}
+          </Link>
+        </p>
+        <div className="flex items-center justify-start gap-2 mt-4">
+          <span className="flex items-center gap-1 text-sm font-semibold text-muted-foreground py-2 px-3 bg-muted rounded-full">
+            <ChartNoAxesColumnIncreasingIcon className="size-4" />
+            Beginner
+          </span>
+          <AvatarGroup>
+            {avatars.slice(0, 4).map((src) => (
+              <Avatar key={src} className="w-8 h-8">
+                <AvatarImage src={src} />
+                <AvatarFallback>AB</AvatarFallback>
+              </Avatar>
+            ))}
+            <AvatarGroupCount className="font-semibold bg-primary text-xs">
+              26+
+            </AvatarGroupCount>
+          </AvatarGroup>
+        </div>
+        <h4 className="font-semibold space-x-0 text-foreground/50 mt-4">
+          <span className="text-xl font-bold text-secondary">
+            ${item?.price}
+          </span>
+          <span>/lifetime</span>
+        </h4>
+      </CardHeader>
     </Card>
   );
 }

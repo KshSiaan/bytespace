@@ -1,15 +1,42 @@
+"use client";
 import Image from "next/image";
-import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { MdOutlineShoppingBag } from "react-icons/md";
-
-// Developer botlesi
-//* Jehetu main page just landing page rakha hoise, im keeping it in SSR, CSR e move korle aro interactive kora jabe judging by usePathname. but no point putting extra load time.
+import { cn } from "@/lib/utils";
+import { useScrollPosition, useWindowSize } from "react-haiku";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const { height } = useWindowSize();
+  const [scroll] = useScrollPosition();
+  const scrollY = typeof scroll === "object" ? scroll.y : 0;
+  const navs = [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Courses",
+      href: "/courses",
+    },
+    {
+      label: "Creators",
+      href: "/creators",
+    },
+  ];
+
+  const path = usePathname();
+
+  const dirty = scrollY > height || path !== "/";
+
   return (
-    <nav className="h-23  absolute w-full top-0 left-0 z-50 bg-transparent ">
+    <nav
+      className={cn(
+        " fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out",
+        dirty ? "bg-secondary h-14" : "h-23",
+      )}
+    >
       <div className="w-full h-full flex justify-between items-center px-[5dvw]">
         <div className="flex items-center gap-2">
           <Image
@@ -17,9 +44,14 @@ export default function Navbar() {
             alt="Icon"
             width={48}
             height={48}
-            className="size-8 mb-3"
+            className={cn("mb-3", dirty ? "size-6" : "size-8")}
           />
-          <h1 className="font-clash-display text-xl font-bold text-background leading-0 tracking-wider">
+          <h1
+            className={cn(
+              "font-clash-display font-bold text-background leading-0 tracking-wider",
+              dirty ? "text-sm" : "text-xl",
+            )}
+          >
             ByteSpace
           </h1>
         </div>
@@ -35,14 +67,16 @@ export default function Navbar() {
           </Button>
         </div>
       </div>
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-min flex items-center gap-4 h-full">
-        <span className="text-sm text-background font-bold mb-2 ">Home</span>
-        <Link href="/courses" className="text-sm text-background font-medium">
-          Courses
-        </Link>
-        <Link href="/creators" className="text-sm text-background font-medium">
-          Creators
-        </Link>
+      <div className="absolute inset-0 flex items-center justify-center gap-4 pointer-events-none">
+        {navs.map((nav) => (
+          <Link
+            key={nav.href}
+            href={nav.href}
+            className="text-sm text-background font-medium pointer-events-auto"
+          >
+            {nav.label}
+          </Link>
+        ))}
       </div>
     </nav>
   );
