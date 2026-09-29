@@ -86,9 +86,15 @@ export default function Discover() {
   );
 }
 
-export function CourseCard({ item }: { item: (typeof dataset)[number] }) {
+export function CourseCard({
+  item,
+  className,
+}: {
+  item: (typeof dataset)[number];
+  className?: string;
+}) {
   return (
-    <Card className="py-4!">
+    <Card className={cn("py-4!", className)}>
       <CardHeader className="px-4!">
         <Image
           src={item.image}
