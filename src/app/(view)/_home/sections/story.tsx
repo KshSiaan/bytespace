@@ -84,7 +84,7 @@ export default function Story() {
             height={600}
             width={600}
             alt="Cone"
-            className="absolute bottom-2/7 -scale-x-100 -translate-y-1/2 z-30 right-6 size-[23dvh] motion-translate-y-loop-[25px] drop-shadow-2xl motion-delay-1000 motion-duration-[5s] motion-ease-in-out"
+            className="absolute bottom-2/7  -translate-y-1/2 z-30 right-6 size-[23dvh] motion-translate-y-loop-[25px] drop-shadow-2xl motion-delay-1000 motion-duration-[5s] motion-ease-in-out"
           />
 
           <CourseCard

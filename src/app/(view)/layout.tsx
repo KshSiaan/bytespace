@@ -1,3 +1,4 @@
+import Footer from "@/components/core/footer";
 import Navbar from "@/components/core/navbar";
 import React, { Suspense } from "react";
 
@@ -8,6 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Navbar />
       </Suspense>
       {children}
+      <Footer />
     </>
   );
 }

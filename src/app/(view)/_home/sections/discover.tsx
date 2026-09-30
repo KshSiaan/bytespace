@@ -94,15 +94,36 @@ export function CourseCard({
   className?: string;
 }) {
   return (
-    <Card className={cn("py-4!", className)}>
+    <Card
+      className={cn(
+        "py-4! cursor-pointer hover:shadow-xl transition-shadow",
+        className,
+      )}
+    >
       <CardHeader className="px-4!">
-        <Image
-          src={item.image}
-          alt={item.title.toLocaleLowerCase()}
-          width={400}
-          height={225}
-          className="w-full object-cover aspect-video rounded-lg"
-        />
+        <div className="relative">
+          <Image
+            src={item.image}
+            alt={item.title.toLocaleLowerCase()}
+            width={400}
+            height={225}
+            className="w-full object-cover aspect-video rounded-lg"
+          />
+          <div className="absolute bottom-0 left-0 w-full p-2 flex items-center justify-start gap-2">
+            <div className="p-2 bg-background/60 font-semibold rounded-full backdrop:blur-sm px-4">
+              {item?.lessons || "n/a"} Lessons
+            </div>
+            <div className="p-2 bg-background/60 font-semibold rounded-full backdrop:blur-sm px-4">
+              {/* its in minutes, format should be hh hours mm mins */}
+              {Math.floor(item?.minutes / 60) > 0
+                ? `${Math.floor(item?.minutes / 60)} hours ${item?.minutes % 60} mins`
+                : `${item?.minutes} minutes`}
+            </div>
+            <div className="p-2 bg-background/60 font-semibold rounded-full backdrop:blur-sm px-4">
+              59 Comments
+            </div>
+          </div>
+        </div>
         <div className="flex justify-between items-center gap-2 mt-2">
           <CardTitle className="text-xl font-bold line-clamp-1">
             {item.title}

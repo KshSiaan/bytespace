@@ -16,6 +16,22 @@ import Discover from "./_home/sections/discover";
 import { logoCloud } from "@/lib/data/data";
 import DiscoverMore from "./_home/sections/discover-more";
 import Story from "./_home/sections/story";
+import JoinBanner from "./_home/sections/join-banner";
+import Testimonial from "./_home/sections/testimonial";
+import React from "react";
+
+const homeComponents = [
+  <React.Fragment key="discover-section">
+    <Suspense fallback={<div className="h-[50dvh] w-full bg-muted" />}>
+      <Discover />,
+    </Suspense>
+  </React.Fragment>,
+  <DiscoverMore key="discover-more" />,
+  <Story key={"story-section"} />,
+  <JoinBanner key={"join-banner"} />,
+  <Testimonial key={"testimonial"} />,
+];
+
 export default function Page() {
   return (
     <>
@@ -30,20 +46,7 @@ export default function Page() {
             Unlock your creativity, gain valuable knowledge, and grow your
             business with our wide range of courses.
           </span>
-          <div className=" w-2/5 flex items-center gap-2">
-            <InputGroup className="bg-background rounded-full h-12">
-              <InputGroupInput
-                className="text-base! font-medium placeholder:text-foreground/50 "
-                placeholder="Course, topic, creator"
-              />
-              <InputGroupAddon className="ml-2" align="inline-start">
-                <MdSearch className="size-5 text-foreground/50" />
-              </InputGroupAddon>
-            </InputGroup>
-            <Button className="rounded-full h-12 px-6 font-semibold text-base cursor-pointer! z-10">
-              Search
-            </Button>
-          </div>
+
           <PersonAnchor />
           <ExternalElements />
           <Suspense
@@ -68,11 +71,9 @@ export default function Page() {
         ))}
       </section>
       <main>
-        <Suspense fallback={<div className="h-[50dvh] w-full bg-muted" />}>
-          <Discover />
-        </Suspense>
-        <DiscoverMore />
-        <Story />
+        {homeComponents.map((component) => (
+          <React.Fragment key={component.key}>{component}</React.Fragment>
+        ))}
       </main>
     </>
   );

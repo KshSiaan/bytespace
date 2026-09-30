@@ -15,7 +15,6 @@ export default function DiscoverMore() {
         something for everyone. Unleash your potential and explore our carefully
         curated categories.
       </p>
-
       <div className="mt-12 grid grid-col- lg:grid-cols-6 gap-6 items-stretch">
         {categories
           ?.sort(() => Math.random() - 0.5)
