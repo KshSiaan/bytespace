@@ -52,7 +52,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Navbar />
       </Suspense>
 
-      <div className="grid lg:grid-cols-2 h-full w-full">
+      <div className="grid lg:grid-cols-2 gap-0 sm:gap-8 lg:gap-18 xl:gap-24 h-full w-full">
         <section className="flex flex-col items-center justify-center h-full gap-4 pt-12 lg:pt-24!">
           <div className="mb-6 lg:mb-0">
             <Suspense fallback={null}>

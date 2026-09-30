@@ -69,7 +69,7 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed w-full top-0 left-0 z-50 transition-all duration-300 ease-in-out",
+        "fixed w-full top-0 left-0 z-100 transition-all duration-300 ease-in-out",
         dirty && !minify ? "bg-secondary h-14" : "h-23",
       )}
     >
