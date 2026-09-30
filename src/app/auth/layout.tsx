@@ -14,21 +14,52 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar";
 import Info from "./info";
+import { connection } from "next/server";
+
+async function RandomCourseCards() {
+  await connection();
+
+  const firstCourse = dataset[Math.floor(Math.random() * dataset.length)];
+
+  let secondCourse = dataset[Math.floor(Math.random() * dataset.length)];
+
+  // Make sure the two cards aren't the same course.
+  while (secondCourse === firstCourse && dataset.length > 1) {
+    secondCourse = dataset[Math.floor(Math.random() * dataset.length)];
+  }
+
+  return (
+    <>
+      <CourseCard
+        item={firstCourse}
+        className="relative w-[30dvw] lg:w-[24dvw] z-20 motion-translate-y-loop-[25px] drop-shadow-2xl motion-delay-500 motion-duration-[5s] motion-ease-in-out"
+      />
+
+      <CourseCard
+        item={secondCourse}
+        className="absolute -left-24 top-24 w-[30dvw] lg:w-[24dvw] z-10 motion-translate-y-loop-[25px] drop-shadow-2xl motion-duration-[5s] motion-ease-in-out"
+      />
+    </>
+  );
+}
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <main className="relative lg:min-h-dvh lg:h-dvh lg:max-h-dvh bg-secondary px-[5dvw] overflow-hidden py-6 lg:py-0">
       <GridPattern />
+
       <Suspense fallback={null}>
         <Navbar />
       </Suspense>
-      <div className="grid lg:grid-cols-2 h-full w-full ">
-        <section className="flex flex-col items-center justify-center h-full gap-4 pt-12 lg:pt-24!  ">
+
+      <div className="grid lg:grid-cols-2 h-full w-full">
+        <section className="flex flex-col items-center justify-center h-full gap-4 pt-12 lg:pt-24!">
           <div className="mb-6 lg:mb-0">
             <Suspense fallback={null}>
               <Info />
             </Suspense>
           </div>
+
           <div className="flex-1 w-full justify-center pt-12 hidden lg:flex">
             <div className="relative">
               <Image
@@ -38,6 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 width={300}
                 className="absolute -left-24 top-24 size-48 z-40 motion-translate-y-loop-[25px] motion-delay-300 drop-shadow-2xl motion-duration-[5s] motion-ease-in-out"
               />
+
               <Image
                 src="/illustration/spring-2.png"
                 alt="Illustration"
@@ -45,6 +77,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 width={300}
                 className="absolute -right-24 bottom-34 size-48 z-40 motion-translate-y-loop-[25px] motion-delay-300 drop-shadow-2xl motion-duration-[5s] motion-ease-in-out"
               />
+
               <Image
                 src="/illustration/pyramid-3.png"
                 alt="Illustration"
@@ -55,15 +88,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
               <div className="rounded-xl absolute bottom-1/8 z-30 space-y-1 p-4 -right-1/5 bg-primary motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl">
                 <h3 className="font-medium">Happy Students</h3>
+
                 <div className="text-xs text-foreground/60 font-medium flex items-center justify-start gap-1 mt-1">
                   <span>4.5</span>
                   <span>(240)</span>
+
                   <StarIcon
                     fill="currentColor"
                     className="size-3 text-primary"
                   />
                 </div>
-                <div className="">
+
+                <div>
                   <AvatarGroup>
                     {avatars.slice(0, 6).map((src) => (
                       <Avatar key={src} className="w-8 h-8">
@@ -71,6 +107,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         <AvatarFallback>AB</AvatarFallback>
                       </Avatar>
                     ))}
+
                     <AvatarGroupCount className="font-semibold bg-foreground text-background text-xs">
                       2k+
                     </AvatarGroupCount>
@@ -78,17 +115,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
 
-              <CourseCard
-                item={dataset[Math.floor(Math.random() * dataset.length)]}
-                className="relative w-[30dvw] lg:w-[24dvw] z-20 motion-translate-y-loop-[25px] drop-shadow-2xl motion-delay-500  motion-duration-[5s] motion-ease-in-out"
-              />
-              <CourseCard
-                item={dataset[Math.floor(Math.random() * dataset.length)]}
-                className="absolute -left-24 top-24 w-[30dvw] lg:w-[24dvw] z-10 motion-translate-y-loop-[25px] drop-shadow-2xl  motion-duration-[5s] motion-ease-in-out"
-              />
+              <Suspense fallback={null}>
+                <RandomCourseCards />
+              </Suspense>
             </div>
           </div>
         </section>
+
         <section className="flex items-center justify-start h-full z-50">
           <Suspense fallback={null}>{children}</Suspense>
         </section>
