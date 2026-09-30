@@ -19,6 +19,7 @@ import Story from "./_home/sections/story";
 import JoinBanner from "./_home/sections/join-banner";
 import Testimonial from "./_home/sections/testimonial";
 import React from "react";
+import Search from "./_home/search";
 
 const homeComponents = [
   <React.Fragment key="discover-section">
@@ -37,15 +38,18 @@ export default function Page() {
     <>
       <header className="bg-secondary h-dvh w-full relative overflow-hidden">
         <GridPattern />
-        <div className="px-[5dvw] h-full w-full pt-28 flex flex-col items-center justify-bottom gap-8 z-40!">
+        <div className="px-[5dvw] h-full w-full pt-28 flex flex-col items-center justify-bottom gap-4 lg:gap-8 z-40!">
           <h1 className="text-2xl lg:text-[4rem] xl:text-[4rem] font-bold text-background text-center">
             Get Access to Hundreds <br />
             Courses Available
           </h1>
-          <span className="text-lg text-center w-full text-background">
+          <span className="text-xs md:text-lg text-center w-full text-background">
             Unlock your creativity, gain valuable knowledge, and grow your
             business with our wide range of courses.
           </span>
+          <Suspense>
+            <Search />
+          </Suspense>
 
           <PersonAnchor />
           <ExternalElements />
@@ -58,7 +62,7 @@ export default function Page() {
           </Suspense>
         </div>
       </header>
-      <section className="py-18 bg-muted grid grid-cols-5 gap-[8%] px-[7dvw]">
+      <section className="py-9 lg:py-18 bg-muted grid grid-cols-3 lg:grid-cols-5 gap-[8%] px-5 lg:px-[7dvw]">
         {logoCloud.map((src) => (
           <Image
             key={src}

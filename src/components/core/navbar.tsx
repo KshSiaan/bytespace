@@ -6,10 +6,20 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { cn } from "@/lib/utils";
 import { useScrollPosition, useWindowSize } from "react-haiku";
 import { usePathname } from "next/navigation";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
+import { MenuIcon } from "lucide-react";
 
 export default function Navbar() {
   const { height } = useWindowSize();
   const [scroll] = useScrollPosition();
+  const isMobile = useIsMobile();
   const scrollY = typeof scroll === "object" ? scroll.y : 0;
   const navs = [
     {
@@ -46,7 +56,10 @@ export default function Navbar() {
             alt="Icon"
             width={48}
             height={48}
-            className={cn("mb-3 hover:opacity-70", dirty ? "size-6" : "size-8")}
+            className={cn(
+              "hover:opacity-70 mb-2 lg:mb-3",
+              dirty ? "size-6" : "size-8 ",
+            )}
           />
           <h1
             className={cn(
@@ -57,7 +70,9 @@ export default function Navbar() {
             {!minify && "ByteSpace"}
           </h1>
         </Link>
-        <div className={cn("flex items-center", minify && "hidden")}>
+        <div
+          className={cn("flex items-center", (minify || isMobile) && "hidden")}
+        >
           <Button variant="ghost" className="text-background" asChild>
             <Link href="/auth/signin">Sign In</Link>
           </Button>
@@ -68,11 +83,48 @@ export default function Navbar() {
             <MdOutlineShoppingBag className="size-4" />
           </Button>
         </div>
+        {isMobile && !minify && (
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" className="text-background" size="icon">
+                <MenuIcon />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="bg-secondary border-l-0! text-background">
+              <SheetHeader>
+                <SheetTitle className="font-clash-display text-background! text-lg mt-3 px-6">
+                  ByteSpace
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex justify-start flex-col items-center p-6 pt-0">
+                {navs.map((nav) => (
+                  <Button
+                    key={nav.href}
+                    variant="ghost"
+                    className="text-background w-full justify-start"
+                    asChild
+                  >
+                    <Link href={nav.href}>{nav.label}</Link>
+                  </Button>
+                ))}
+                <div className="mt-6 grid grid-cols-2 gap-6 w-full">
+                  <Button variant="ghost" asChild>
+                    <Link href="/auth/signin">Sign In</Link>
+                  </Button>
+                  <Button asChild>
+                    <Link href="/auth/signup">Join Us</Link>
+                  </Button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        )}
       </div>
+
       <div
         className={cn(
           "absolute inset-0 flex items-center justify-center gap-4 pointer-events-none",
-          minify && "hidden",
+          (minify || isMobile) && "hidden",
         )}
       >
         {navs.map((nav) => (

@@ -48,7 +48,7 @@ export default function Page() {
   }
 
   return (
-    <Card className="min-w-2xl mx-auto py-12! px-6 z-50">
+    <Card className="w-full lg:min-w-2xl mx-auto py-6 lg:py-12! lg:px-6 z-50">
       <CardHeader>
         <CardDescription className="text-secondary">
           Create an Account
@@ -98,7 +98,7 @@ export default function Page() {
               )}
             </Field>
 
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-center lg:justify-end">
               <Button type="submit" className="h-10 px-4 rounded-full">
                 Sign In
               </Button>
@@ -107,7 +107,7 @@ export default function Page() {
         </form>
       </CardContent>
 
-      <CardFooter className="mt-12 w-full flex flex-col items-center justify-center">
+      <CardFooter className="lg:mt-12 w-full flex flex-col items-center justify-center">
         <div className="mb-12 w-full">
           <div className="flex justify-between items-center w-full flex-wrap flex-row gap-4">
             <Separator className="flex-1" />
@@ -139,9 +139,9 @@ export default function Page() {
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
-          Already have an account?{" "}
-          <Link href="/auth/signin" className="text-secondary hover:underline">
-            Log in
+          New user?{" "}
+          <Link href="/auth/signup" className="text-secondary hover:underline">
+            Create an account
           </Link>
         </p>
       </CardFooter>

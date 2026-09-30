@@ -17,19 +17,19 @@ import Info from "./info";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="relative min-h-dvh lg:h-dvh lg:max-h-dvh bg-secondary px-[5dvw] overflow-hidden">
+    <main className="relative lg:min-h-dvh lg:h-dvh lg:max-h-dvh bg-secondary px-[5dvw] overflow-hidden py-6 lg:py-0">
       <GridPattern />
       <Suspense fallback={null}>
         <Navbar />
       </Suspense>
-      <div className="grid grid-cols-2 h-full w-full pt-24">
-        <section className="flex flex-col items-center justify-center h-full gap-4">
-          <div className="">
+      <div className="grid lg:grid-cols-2 h-full w-full ">
+        <section className="flex flex-col items-center justify-center h-full gap-4 pt-12 lg:pt-24!  ">
+          <div className="mb-6 lg:mb-0">
             <Suspense fallback={null}>
               <Info />
             </Suspense>
           </div>
-          <div className="flex-1 w-full flex justify-center pt-12">
+          <div className="flex-1 w-full justify-center pt-12 hidden lg:flex">
             <div className="relative">
               <Image
                 src="/illustration/donut.png"
@@ -53,7 +53,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 className="absolute -left-24 bottom-0 size-48 z-40 motion-translate-y-loop-[25px] motion-delay-300 drop-shadow-2xl motion-duration-[5s] motion-ease-in-out"
               />
 
-              <div className="rounded-xl absolute bottom-1/8 z-30 space-y-1  p-4 -right-1/5 bg-primary motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl">
+              <div className="rounded-xl absolute bottom-1/8 z-30 space-y-1 p-4 -right-1/5 bg-primary motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl">
                 <h3 className="font-medium">Happy Students</h3>
                 <div className="text-xs text-foreground/60 font-medium flex items-center justify-start gap-1 mt-1">
                   <span>4.5</span>

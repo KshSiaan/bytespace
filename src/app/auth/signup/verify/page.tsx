@@ -82,7 +82,7 @@ export default function Page() {
   }
 
   return (
-    <Card className="min-w-2xl mx-auto py-12! px-6 z-50">
+    <Card className="w-full lg:min-w-2xl mx-auto py-12! px-6 z-50">
       <CardHeader>
         <CardDescription className="text-secondary">
           Verify Your Email
@@ -135,7 +135,7 @@ export default function Page() {
               )}
             </Field>
 
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-center lg:justify-end">
               <Button type="submit" className="h-10 px-5 rounded-full">
                 Verify Email
               </Button>

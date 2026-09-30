@@ -53,7 +53,7 @@ export default function Page() {
   }
 
   return (
-    <Card className="min-w-2xl mx-auto py-12! px-6 z-50">
+    <Card className="w-full lg:min-w-2xl mx-auto lg:py-12! lg:px-6 z-50">
       <CardHeader>
         <CardDescription className="text-secondary">
           Create an Account
@@ -120,7 +120,7 @@ export default function Page() {
               )}
             </Field>
 
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-center lg:justify-end">
               <Button type="submit" className="h-10 px-4 rounded-full">
                 Continue
               </Button>
@@ -129,7 +129,7 @@ export default function Page() {
         </form>
       </CardContent>
 
-      <CardFooter className="mt-12 flex justify-center items-center">
+      <CardFooter className="lg:mt-12 flex justify-center items-center">
         <p className="text-sm text-muted-foreground">
           Already have an account?{" "}
           <Link href="/auth/signin" className="text-secondary hover:underline">
