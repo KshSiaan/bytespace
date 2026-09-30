@@ -52,7 +52,7 @@ export default function Search() {
               <Link
                 key={item.id}
                 href={`/courses?type=${item.title.trim().toLowerCase()}`}
-                className="hover:bg-accent/50 rounded-lg p-2"
+                className="hover:bg-accent/50 rounded-lg p-2 w-full"
               >
                 <div className="flex items-center gap-4">
                   <Image
