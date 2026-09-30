@@ -22,7 +22,7 @@ export default function Story() {
           <div className="absolute left-1/4 -top-1/2 -translate-x-1/2 h-[150%] w-[150dvw] bg-radial from-[#CBFC0160] via-transparent to-transparent" />
         </div>
         <div className="pointer-events-none absolute left-0 inset-0 -z-10">
-          <div className="absolute right-[-80dvw] top-[-40dvh] h-[150%] w-[150dvw] bg-radial from-[#003BE230] via-transparent to-transparent" />
+          <div className="absolute right-[-80dvw] bottom-[-40dvh] h-[150%] w-[150dvw] bg-radial from-[#003BE250] via-transparent to-transparent" />
         </div>
 
         <div className="relative h-full flex flex-col justify-center items-center">
@@ -84,7 +84,7 @@ export default function Story() {
             height={600}
             width={600}
             alt="Cone"
-            className="absolute bottom-2/7  -translate-y-1/2 z-30 right-6 size-[23dvh] motion-translate-y-loop-[25px] drop-shadow-2xl motion-delay-1000 motion-duration-[5s] motion-ease-in-out"
+            className="absolute bottom-2/7 -scale-x-100 -translate-y-1/2 z-30 right-6 size-[23dvh] motion-translate-y-loop-[25px] drop-shadow-2xl motion-delay-1000 motion-duration-[5s] motion-ease-in-out"
           />
 
           <CourseCard

@@ -17,10 +17,14 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { Separator } from "@/components/ui/separator";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
 const formSchema = z.object({
+  fullName: z
+    .string()
+    .min(5, "Full name must be at least 5 characters.")
+    .max(32, "Full name must be at most 32 characters."),
+
   email: z.email("Invalid email address."),
+
   password: z
     .string()
     .min(8, "Password must be at least 8 characters.")
@@ -32,6 +36,7 @@ export default function Page() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      fullName: "",
       email: "",
       password: "",
     },
@@ -62,6 +67,23 @@ export default function Page() {
       <CardContent>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup>
+            {/* Full Name */}
+            <Field>
+              <FieldLabel htmlFor="fullName">Full Name</FieldLabel>
+
+              <Input
+                id="fullName"
+                placeholder="Jamie Davis"
+                {...form.register("fullName")}
+              />
+
+              {form.formState.errors.fullName && (
+                <p className="text-sm text-red-500">
+                  {form.formState.errors.fullName.message}
+                </p>
+              )}
+            </Field>
+
             {/* Email */}
             <Field>
               <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -100,44 +122,14 @@ export default function Page() {
 
             <div className="flex items-center justify-end">
               <Button type="submit" className="h-10 px-4 rounded-full">
-                Sign In
+                Continue
               </Button>
             </div>
           </FieldGroup>
         </form>
       </CardContent>
 
-      <CardFooter className="mt-12 w-full flex flex-col items-center justify-center">
-        <div className="mb-12 w-full">
-          <div className="flex justify-between items-center w-full flex-wrap flex-row gap-4">
-            <Separator className="flex-1" />
-            <span>or</span>
-            <Separator className="flex-1" />
-          </div>
-
-          <div className="mt-6 flex justify-center items-center gap-4">
-            <Button
-              size="icon-lg"
-              variant="outline"
-              className="size-auto p-2"
-              asChild
-            >
-              <Link href="/">
-                <FaFacebook className="size-8" />
-              </Link>
-            </Button>
-            <Button
-              size="icon-lg"
-              variant="outline"
-              className="size-auto p-2"
-              asChild
-            >
-              <Link href="/">
-                <FaGoogle className="size-8" />
-              </Link>
-            </Button>
-          </div>
-        </div>
+      <CardFooter className="mt-12 flex justify-center items-center">
         <p className="text-sm text-muted-foreground">
           Already have an account?{" "}
           <Link href="/auth/signin" className="text-secondary hover:underline">
