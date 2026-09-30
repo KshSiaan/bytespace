@@ -13,8 +13,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="p-12 px-[5dvw] grid grid-cols-5 gap-6 border-t-4 border-muted">
-      <div className="flex items-center gap-2 col-span-5">
+    <footer className="p-12 px-[5dvw] grid grid-cols-2 lg:grid-cols-5 gap-6 border-t-4 border-muted">
+      <div className="flex items-center gap-2 cols-span-2 lg:col-span-5">
         <Image
           src="/icon.svg"
           alt="Icon"
@@ -32,7 +32,7 @@ export default function Footer() {
         </h1>
       </div>
 
-      <section className="col-span-2 w-full h-full pr-[5dvw]">
+      <section className="col-span-2 w-full h-full lg:pr-[5dvw] lg:my-12 md:my-0">
         <p>
           Stay Up to date with our latest features and releases by joining our
           newsletter.
@@ -64,7 +64,7 @@ export default function Footer() {
           ))}
         </section>
       ))}
-      <div className="col-span-5 border-t-2 mt-[20dvh] border-foreground/10! py-6 flex justify-between items-center">
+      <div className="col-span-2 lg:col-span-5 border-t-2 lg:mt-[20dvh] border-foreground/10! gap-4 py-6 grid lg:flex justify-between items-center">
         <p>@ 2023 ByteSpace. All rights reserved.</p>
         <div className="flex items-center gap-4">
           <Link href="/privacy-policy">Privacy Policy</Link>

@@ -33,15 +33,15 @@ export default function Discover() {
   };
 
   return (
-    <section className="w-full max-w-[95dvw] px-[7dvw] py-24 overflow-hidden">
+    <section className="w-full max-w-[95dvw] px-[7dvw] pt-24 lg:pb-24 overflow-hidden">
       <h2 className="text-2xl lg:text-[2.5rem] xl:text-[3rem] font-bold text-center">
         Discover Your Passion,
         <br /> Build Your Skills
       </h2>
-      <p className="text-lg text-center w-full text-foreground/50 mt-4">
+      <p className="text-sm sm:text-base lg:text-lg text-center w-full text-foreground/50 mt-4">
         At Bytespace Courses, we bring you closer to life-changing knowledge.
-        Explore a variety of courses across different fields, <br /> from
-        technology to the arts, and make a difference in your career and life.
+        Explore a variety of courses across different fields, from technology to
+        the arts, and make a difference in your career and life.
       </p>
 
       <div className="flex items-center justify-center gap-4 mt-8 flex-wrap pb-6">
@@ -101,26 +101,32 @@ export function CourseCard({
       )}
     >
       <CardHeader className="px-4!">
-        <div className="relative">
+        <div className="relative overflow-hidden rounded-lg">
           <Image
             src={item.image}
             alt={item.title.toLocaleLowerCase()}
             width={400}
             height={225}
-            className="w-full object-cover aspect-video rounded-lg"
+            className="w-full aspect-video object-cover"
           />
-          <div className="absolute bottom-0 left-0 w-full p-2 flex items-center justify-start gap-2">
-            <div className="p-2 bg-background/60 font-semibold rounded-full backdrop:blur-sm px-4">
-              {item?.lessons || "n/a"} Lessons
-            </div>
-            <div className="p-2 bg-background/60 font-semibold rounded-full backdrop:blur-sm px-4">
-              {/* its in minutes, format should be hh hours mm mins */}
-              {Math.floor(item?.minutes / 60) > 0
-                ? `${Math.floor(item?.minutes / 60)} hours ${item?.minutes % 60} mins`
-                : `${item?.minutes} minutes`}
-            </div>
-            <div className="p-2 bg-background/60 font-semibold rounded-full backdrop:blur-sm px-4">
-              59 Comments
+
+          <div className="absolute inset-x-0 bottom-0 p-2 sm:p-3">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <div className="rounded-full bg-background/60 px-2.5 py-1.5 text-[11px] font-semibold backdrop-blur-sm sm:px-4 sm:py-2 sm:text-sm">
+                {item?.lessons || "n/a"} Lessons
+              </div>
+
+              <div className="rounded-full bg-background/60 px-2.5 py-1.5 text-[11px] font-semibold backdrop-blur-sm sm:px-4 sm:py-2 sm:text-sm">
+                {item?.minutes
+                  ? Math.floor(item.minutes / 60) > 0
+                    ? `${Math.floor(item.minutes / 60)}h ${item.minutes % 60}m`
+                    : `${item.minutes}m`
+                  : "n/a"}
+              </div>
+
+              <div className="rounded-full bg-background/60 px-2.5 py-1.5 text-[11px] font-semibold backdrop-blur-sm sm:px-4 sm:py-2 sm:text-sm">
+                59 Comments
+              </div>
             </div>
           </div>
         </div>
