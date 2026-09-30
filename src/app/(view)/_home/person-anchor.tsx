@@ -9,6 +9,7 @@ import {
   AvatarGroupCount,
   AvatarImage,
 } from "@/components/ui/avatar";
+import { avatars } from "@/lib/data/data";
 export default function PersonAnchor() {
   return (
     <section className="absolute bottom-0 z-20 flex h-[50dvh] w-full items-end justify-center lg:w-1/2">
@@ -42,14 +43,7 @@ export default function PersonAnchor() {
         </div>
         <div className="">
           <AvatarGroup>
-            {[
-              "https://reloop.b-cdn.net/avatars/28095df1-f824-4762-9426-98a9beffea50.png",
-              "https://reloop.b-cdn.net/avatars/a53b5e74-7d21-4e21-b8a1-db7121873a76.png",
-              "https://reloop.b-cdn.net/avatars/6a448046-b636-4cb6-a779-8212bf86d831.png",
-              "https://reloop.b-cdn.net/avatars/4e74aa39-baab-41dd-87a3-3fa6420215be.png",
-              "https://reloop.b-cdn.net/avatars/55db630c-8499-45b1-b28a-58be87cbd585.png",
-              "https://reloop.b-cdn.net/avatars/41f7c9e3-9078-466e-b325-97975f632e45.png",
-            ].map((src) => (
+            {avatars.slice(0, 6).map((src) => (
               <Avatar key={src} className="w-8 h-8">
                 <AvatarImage src={src} />
                 <AvatarFallback>AB</AvatarFallback>
