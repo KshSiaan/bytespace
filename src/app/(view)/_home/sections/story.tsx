@@ -166,7 +166,7 @@ export default function Story() {
             className="absolute bottom-0 -translate-y-1/2 z-0 left-18 h-90 aspect-8/9"
           /> */}
         </div>
-        <div className="relative h-full flex flex-col justify-center items-center w-full col-span-2 lg:col-span-1 p-6 lg:p-0 mt-12 lg:mt-0">
+        <div className="relative h-full flex flex-col justify-center items-center w-full col-span-2 lg:col-span-1 p-6 lg:p-0 mt-12 lg:mt-0 order-1 lg:order-2">
           <div className="w-full lg:w-2/3 space-y-4">
             <h2 className="text-2xl lg:text-[2.5rem] xl:text-[3rem] font-bold text-left">
               Create & Manage <br />
