@@ -20,14 +20,22 @@ import JoinBanner from "./_home/sections/join-banner";
 import Testimonial from "./_home/sections/testimonial";
 import React from "react";
 import Search from "./_home/search";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const homeComponents = [
-  <React.Fragment key="discover-section">
-    <Suspense fallback={<div className="h-[50dvh] w-full bg-muted" />}>
-      <Discover />,
-    </Suspense>
-  </React.Fragment>,
-  <DiscoverMore key="discover-more" />,
+  <Suspense
+    key="discover-section"
+    fallback={<Skeleton className="h-[20dvh] w-full bg-muted" />}
+  >
+    <Discover />,
+  </Suspense>,
+
+  <Suspense
+    key="discover-section"
+    fallback={<Skeleton className="h-[20dvh] w-full bg-muted" />}
+  >
+    <DiscoverMore key="discover-more" />,
+  </Suspense>,
   <Story key={"story-section"} />,
   <JoinBanner key={"join-banner"} />,
   <Testimonial key={"testimonial"} />,
