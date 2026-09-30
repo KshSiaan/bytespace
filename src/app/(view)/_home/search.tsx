@@ -23,7 +23,7 @@ export default function Search() {
       item.title.toLowerCase().includes(searchQuery.toLowerCase()),
     ) ?? [];
   return (
-    <div className=" lg:w-2/5 flex items-center gap-2 z-50">
+    <div className=" lg:w-2/5 flex items-center gap-2 z-50 motion-delay-1000 motion-safe:motion-fade-in">
       <InputGroup className="bg-background rounded-full md:h-12 relative">
         <InputGroupInput
           className="text-sm md:text-base! font-medium placeholder:text-foreground/50"
