@@ -23,7 +23,7 @@ export default function Search() {
       item.title.toLowerCase().includes(searchQuery.toLowerCase()),
     ) ?? [];
   return (
-    <div className=" lg:w-2/5 flex items-center gap-2 z-50 motion-delay-1000 motion-safe:motion-fade-in">
+    <div className=" lg:w-2/5 flex items-center gap-2 z-5 motion-delay-1000 motion-safe:motion-fade-in">
       <InputGroup className="bg-background rounded-full md:h-12 relative">
         <InputGroupInput
           className="text-sm md:text-base! font-medium placeholder:text-foreground/50"
@@ -32,7 +32,13 @@ export default function Search() {
           onFocus={() => setOnFocus(true)}
           onChange={(e) => setSearchQuery(e.target.value)}
           value={searchQuery}
-          onBlur={() => setOnFocus(false)}
+          onBlur={(e) => {
+            const nextTarget = e.relatedTarget as Node | null;
+
+            if (!e.currentTarget.parentElement?.contains(nextTarget)) {
+              setOnFocus(false);
+            }
+          }}
           autoComplete="off"
         />
         <InputGroupAddon className="md:ml-2" align="inline-start">
@@ -52,6 +58,7 @@ export default function Search() {
               <Link
                 key={item.id}
                 href={`/courses?type=${item.title.trim().toLowerCase()}`}
+                onMouseDown={() => setOnFocus(true)}
                 className="hover:bg-accent/50 rounded-lg p-2 w-full"
               >
                 <div className="flex items-center gap-4">
