@@ -73,7 +73,7 @@ export default function Story() {
             className="h-[40dvw] lg:h-[60dvh] w-auto max-w-none z-30 object-contain object-bottom motion-translate-y-in-100 motion-opacity-in-10 motion-delay-1000 drop-shadow-2xl"
           />
 
-          <div className="rounded-xl scale-50 absolute bg-background top-3/6 lg:scale-150 z-30 w-50 space-y-2 p-4 right-1/7 motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl">
+          <div className="rounded-xl scale-50 absolute bg-background top-3/6 lg:scale-150 z-30 w-50 space-y-2 p-4 right-1/7 motion-duration-[8s] motion-translate-y-loop-[25px] motion-ease-in-out motion-preset-fade-lg  motion-delay-1500 drop-shadow-2xl">
             <h3 className="font-medium">Learning Progress</h3>
             <div className="text-3xl font-bold text-foreground">55%</div>
             <Progress value={55} />
@@ -89,14 +89,14 @@ export default function Story() {
               object-contain
               scale-50 lg:scale-100
               lg:-scale-x-100 lg:-translate-y-1/2
-              motion-translate-y-loop-[25px]
               drop-shadow-2xl
+              motion-translate-y-loop-[25px]
               motion-delay-1000 motion-duration-[5s] motion-ease-in-out"
           />
 
           <CourseCard
             item={dataset[0]}
-            className="absolute bottom-0 scale-50 lg:scale-100 hidden lg:block lg:-translate-y-1/2 z-0 left-2 lg:left-18 h-90 aspect-8/9"
+            className="absolute bottom-0 scale-50 lg:scale-100 hidden lg:block lg:-translate-y-1/2 z-0 left-2 lg:left-18 h-90 aspect-8/9 motion-duration-[10s] motion-translate-y-loop-[-25px] motion-ease-in-out"
           />
         </div>
       </section>
@@ -119,13 +119,20 @@ export default function Story() {
             className="h-[30dvh] lg:h-[70dvh] w-auto max-w-none z-30 object-contain object-bottom motion-translate-y-in-100 motion-opacity-in-10 motion-delay-1000 drop-shadow-2xl"
           />
 
-          <div className="rounded-xl bg-secondary absolute text-background! scale-50 lg:scale-100 right-0 top-24 w-75 z-0 space-y-2 p-4 lg:left-1/5 motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl">
+          <div
+            className="rounded-xl bg-secondary absolute text-background!  scale-50 lg:scale-100 right-0 top-24 w-75 z-0 space-y-2 p-4 lg:left-1/5 motion-preset-fade-lg drop-shadow-2xl
+              motion-translate-y-loop-[15px]
+              motion-delay-1000 motion-duration-[5s] motion-ease-in-out"
+          >
             <h3 className="font-medium">Total Revenue</h3>
             <span className="text-xs">July 1-28</span>
             <div className="text-3xl font-bold">$120.29</div>
             <Progress value={55} />
           </div>
-          <div className="rounded-xl absolute top-0 scale-50 lg:scale-100 bg-secondary text-background! lg:top-64 w-50 z-0 space-y-2 p-4 left-0 lg:left-1/5 motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl">
+          <div
+            className="rounded-xl absolute motion-translate-y-loop-[15px]
+              motion-duration-[7s] motion-ease-in-out top-0 scale-50 lg:scale-100 bg-secondary text-background! lg:top-64 w-50 z-0 space-y-2 p-4 left-0 lg:left-1/5 motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl"
+          >
             <h3 className="font-medium">Total Revenue</h3>
             <span className="text-xs">2023</span>
             <div className="text-3xl font-bold ">$1,200.38</div>
@@ -139,7 +146,7 @@ export default function Story() {
             alt="Cone"
             className="absolute bottom-2/7 -scale-x-100! -translate-y-1/2 z-30 right-12 lg:right-24 size-24 lg:size-[23dvh] motion-translate-y-loop-[25px] drop-shadow-2xl motion-delay-1000 motion-duration-[5s] motion-ease-in-out"
           />
-          <div className="rounded-xl absolute bg-background  scale-75 lg:scale-100 bottom-1/6 z-30 space-y-1  p-4 right-24 -translate-x-1/2 motion-preset-fade-lg motion-delay-1500 drop-shadow-2xl">
+          <div className="rounded-xl absolute bg-background motion-translate-y-loop-[15px] motion-duration-[5s] motion-ease-in-out scale-75 lg:scale-100 bottom-1/6 z-30 space-y-1  p-4 right-24 -translate-x-1/2 motion-preset-fade-lg drop-shadow-2xl">
             <h3 className="font-medium">Happy Students</h3>
             <div className="text-xs text-foreground/50 font-medium flex items-center justify-start gap-1 mt-1">
               <span>4.5</span>
